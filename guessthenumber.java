@@ -20,9 +20,11 @@ class playinggame {
             System.out.println("Guess The Number between 0 to 100");
             a = sc.nextInt();
             if (b > a) {
-                System.out.println("guess number is low");
+                System.out.println("The number you guess is lower than the actual number");
+                System.out.println("HINT: Try to maximize the number");
             } else if (b < a) {
-                System.out.println("guess number is higher");
+                System.out.println("The number you guess is higher than the actual number");
+                System.out.println("HINT: Try to minimize the number");
             }
             c++;
         } while (a != b);
@@ -36,39 +38,48 @@ class playinggame {
     // How many rounds a user takes for guessing the correct number
     public void numberofguess() {
         if (c < 5) {
-            System.out.println("you cleared in round 1");
+            System.out.println("Congratulations");
+            System.out.println("You cleared in round 1");
         } else if (c > 5 && c < 10) {
-            System.out.println("you clear in round 2");
+            System.out.println("You clear in round 2");
         } else {
-            System.out.println("you cleared in round 3");
+            System.out.println("You cleared in round 3");
         }
     }
+
+    //for playing the game again
     public void playagain(){
-        generaterandomnumber();
-        takeinput();
-        iscorrectnumber();
-        numberofguess();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to play again?(yes or no)");
+        String str=sc.next();
+        String str1=str.toUpperCase();
+        if(str1.equals("YES")){
+            generaterandomnumber();
+            takeinput();
+            iscorrectnumber();
+            numberofguess();
+            playagain();
+            
+        }
+        else{
+            System.out.println("code runs sucessfully");
+        }
+        
     }
 
 }
 //Driver Code
 public class guessthenumber {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+       
         playinggame play = new playinggame();
         play.generaterandomnumber();
         play.takeinput();
         play.iscorrectnumber();
         play.numberofguess();
+        play.playagain();
         
-        System.out.println("Do you want to play again?");
-        String str=sc.next();
-        if(str.toUpperCase()=="YES"){
-            play.playagain();
-        }
-        else{
-            System.out.println("code runs sucessfully");
-        }
+        
 
 
     }
